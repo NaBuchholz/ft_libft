@@ -46,6 +46,9 @@ SRC = ft_isalnum.c \
 	  ft_putchar_fd.c \
 	  ft_putstr_fd.c \
 	  ft_putendl_fd.c \
+	  ft_putendl_fd_1.c \
+	  ft_putendl_fd_0.c \
+	  ft_putendl_fd_n.c \
 	  ft_putnbr_fd.c \
 	  ft_lstadd_back.c \
 	  ft_lstadd_front.c \
