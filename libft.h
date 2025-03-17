@@ -6,13 +6,14 @@
 /*   By: nbuchhol <nbuchhol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 10:36:14 by nbuchhol          #+#    #+#             */
-/*   Updated: 2024/10/23 23:01:31 by nbuchhol         ###   ########.fr       */
+/*   Updated: 2025/03/17 16:31:21 by nbuchhol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <stdlib.h>
+# include "../printf/includes/ft_printf.h"
 
 typedef struct s_list
 {
