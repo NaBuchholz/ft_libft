@@ -6,7 +6,7 @@
 #    By: nbuchhol <nbuchhol@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/11 09:23:03 by nbuchhol          #+#    #+#              #
-#    Updated: 2025/03/17 15:37:06 by nbuchhol         ###   ########.fr        #
+#    Updated: 2025/03/17 16:03:51 by nbuchhol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ ${NAME}: ${OBJ} ${PRINTF}
 %.o: %.c
 	@${CC} ${CFLAGS} -c $< -o $@
 
-${PRINTF}:
+${PRINTF}: init-modules
 	@make -C ${PRINTF_DIR}
 
 init-modules:
@@ -80,7 +80,9 @@ init-modules:
 		echo "Initializing printf submodule..."; \
 		git submodule update --init --recursive ${PRINTF_DIR}; \
 	else \
-		echo "printf submodule is already initialized."; \
+		echo "Updating printf submodule..."; \
+		BRANCH=$$(git config -f .gitmodules --get submodule.${PRINTF_DIR}.branch || echo "main"); \
+		(cd ${PRINTF_DIR} && git checkout $$BRANCH && git pull origin $$BRANCH); \
 	fi
 
 clean:
@@ -93,4 +95,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY = all clean fclean re
+.PHONY = all clean fclean re init-modules
