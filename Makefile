@@ -6,7 +6,7 @@
 #    By: nbuchhol <nbuchhol@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/11 09:23:03 by nbuchhol          #+#    #+#              #
-#    Updated: 2024/10/23 23:01:54 by nbuchhol         ###   ########.fr        #
+#    Updated: 2025/03/17 15:37:06 by nbuchhol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,11 +60,11 @@ SRC = ft_isalnum.c \
 	  ft_lstnew.c \
 	  ft_lstsize.c
 PRINTF_DIR = printf
-PRINTF = $(PRINTF_DIR)/printf.a
+PRINTF = $(PRINTF_DIR)/libftprintf.a
 OBJ = ${SRC:.c=.o}
 RM = rm -f
 
-all: init-modules ${NAME}
+all: init-modules ${PRINTF} ${NAME}
 
 ${NAME}: ${OBJ} ${PRINTF}
 	ar rcs ${NAME} ${OBJ} ${PRINTF}
@@ -73,9 +73,9 @@ ${NAME}: ${OBJ} ${PRINTF}
 	@${CC} ${CFLAGS} -c $< -o $@
 
 ${PRINTF}:
-	@MAKE -C ${PRINTF_DIR}
+	@make -C ${PRINTF_DIR}
 
-init-modules: 
+init-modules:
 	@if [ ! -d "printf" ] || [ ! -f "printf/.git" ]; then \
 		echo "Initializing printf submodule..."; \
 		git submodule update --init --recursive ${PRINTF_DIR}; \
@@ -85,11 +85,11 @@ init-modules:
 
 clean:
 	${RM} ${OBJ}
-	@$(MAKE) -C ${PRINTF_DIR} clean
+	@make -C ${PRINTF_DIR} clean
 
 fclean: clean
 	${RM} ${NAME}
-	@$(MAKE) -C ${PRINTF_DIR} fclean
+	@make -C ${PRINTF_DIR} fclean
 
 re: fclean all
 
