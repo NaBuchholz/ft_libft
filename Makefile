@@ -59,23 +59,37 @@ SRC = ft_isalnum.c \
 	  ft_lstmap.c \
 	  ft_lstnew.c \
 	  ft_lstsize.c
-
+PRINTF_DIR = printf
+PRINTF = $(PRINTF_DIR)/printf.a
 OBJ = ${SRC:.c=.o}
 RM = rm -f
 
-all: ${NAME}
+all: init-modules ${NAME}
 
-${NAME}: ${OBJ}
-	ar rcs ${NAME} ${OBJ}
+${NAME}: ${OBJ} ${PRINTF}
+	ar rcs ${NAME} ${OBJ} ${PRINTF}
 
 %.o: %.c
-	@${CC} ${CFLAGS} -c $^ -o $@
+	@${CC} ${CFLAGS} -c $< -o $@
+
+${PRINTF}:
+	@MAKE -C ${PRINTF_DIR}
+
+init-modules: 
+	@if [ ! -d "printf" ] || [ ! -f "printf/.git" ]; then \
+		echo "Initializing printf submodule..."; \
+		git submodule update --init --recursive ${PRINTF_DIR}; \
+	else \
+		echo "printf submodule is already initialized."; \
+	fi
 
 clean:
 	${RM} ${OBJ}
+	@$(MAKE) -C ${PRINTF_DIR} clean
 
 fclean: clean
 	${RM} ${NAME}
+	@$(MAKE) -C ${PRINTF_DIR} fclean
 
 re: fclean all
 
