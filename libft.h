@@ -13,7 +13,7 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <stdlib.h>
-# include "../printf/includes/ft_printf.h"
+# include "printf/includes/ft_printf.h"
 
 typedef struct s_list
 {
