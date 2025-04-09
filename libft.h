@@ -6,7 +6,7 @@
 /*   By: nbuchhol <nbuchhol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 10:36:14 by nbuchhol          #+#    #+#             */
-/*   Updated: 2025/03/17 16:31:21 by nbuchhol         ###   ########.fr       */
+/*   Updated: 2025/04/09 09:59:59 by nbuchhol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 int		ft_putendl_fd_1(char *s, int fd);
 int		ft_putendl_fd_0(char *s, int fd);
-char		**ft_putendl_fd_n(char *s, int fd);
+char	**ft_putendl_fd_n(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
 void	ft_lstadd_back(t_list **lst, t_list *new);
